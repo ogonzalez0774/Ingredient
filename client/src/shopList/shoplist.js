@@ -43,6 +43,22 @@ function pantryCheck(ingredient) {
   return true;
 }
 
+// simulated databse get result
+const pantry = [
+  {
+    name: "salt",
+    quantity: 0
+  },
+  {
+    name: "egg",
+    quantity: 0
+  },
+  {
+    name: "blackpepper",
+    quantity: 0
+  }
+];
+
 function generateList(mealPlan) {
   const groceries = {};
 
@@ -54,7 +70,8 @@ function generateList(mealPlan) {
       if (!groceries[ingredient.name]) {
         groceries[ingredient.name] = 0;
       }
-      groceries[ingredient.name] += ingredient.quantity;
+      // groceries[ingredient.name] += ingredient.quantity;
+      groceries[ingredient.name] = 1;
     });
   }
 
