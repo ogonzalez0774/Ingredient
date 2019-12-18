@@ -36,28 +36,25 @@ const schedule = {
 };
 
 // this can probably just be inside generateList()
-function pantryCheck(ingredient) {
-  // pantry will hold quantity by mass
-  // removes amount from pantry and shopping list
-  // still need more -> true, otherwise false?
-  return true;
+function pantryCheck(ingredient, groceries) {
+  if (!pantry[ingredient]) pantry[ingredient] = 0;
+  const clone = JSON.parse(JSON.stringify(groceries));
+  groceries[ingredient] -= pantry[ingredient];
+  pantry[ingredient] -= clone[ingredient];
+  if (pantry[ingredient] < 0) {
+    pantry[ingredient] = 0;
+  }
+  if (groceries[ingredient] <= 0) {
+    delete groceries[ingredient];
+  }
 }
 
 // simulated databse get result
-const pantry = [
-  {
-    name: "salt",
-    quantity: 0
-  },
-  {
-    name: "egg",
-    quantity: 0
-  },
-  {
-    name: "blackpepper",
-    quantity: 0
-  }
-];
+const pantry = {
+  salt: 10,
+  chicken: 10,
+  blackpepper: 10
+};
 
 function generateList(mealPlan) {
   const groceries = {};
@@ -75,17 +72,14 @@ function generateList(mealPlan) {
     });
   }
 
-  //   for (const item in groceries) {
-  //     if (pantryCheck(item)) {
-  //       console.log(":)");
-  // should only return items that need to be bought after pantryCheck()
-  // if groceries[ingredient.name] === 0, delete groceries[ingredient.name]
-  //     }
-  //   }
+  for (const item in groceries) {
+    pantryCheck(item, groceries);
+  }
 
+  console.log(groceries);
+  console.log(pantry);
   // will use an ingredient library to convert mass to min purchasable amount
   // const printList = groceries.map(item => thiswillprobablybeanotherfunction([~item key~]))
-  return console.log(groceries);
 }
 
 generateList(schedule);
