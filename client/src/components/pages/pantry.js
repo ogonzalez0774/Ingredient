@@ -1,8 +1,8 @@
 import React from "react";
 import API from "../../utils/API";
-import pantryItem from "../pantryItem";
+import PantryItem from "../pantryItem";
 
-class pantry extends React.Component {
+class Pantry extends React.Component {
     state = {
         userId: 0,
         ingredients: [
@@ -38,7 +38,17 @@ class pantry extends React.Component {
     togglePantryItem(userId) {
         API.updateUser(
             { id: userId },
-            { $set: { ingredients: this.state.ingredients } }
+            {
+                $set: {
+                    ingredients: this.state.ingredients.map(ingredient => {
+                        const newIngredient = {
+                            name: ingredient.name,
+                            amount: (ingredient.amount + 1) % 2
+                        };
+                        return newIngredient;
+                    })
+                }
+            }
         );
         this.loadPantry();
     }
@@ -52,3 +62,5 @@ class pantry extends React.Component {
         ));
     }
 }
+
+export default Pantry;

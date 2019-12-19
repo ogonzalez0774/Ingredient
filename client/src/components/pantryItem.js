@@ -1,6 +1,6 @@
 import React from "react";
 
-class pantryItem extends React.Component {
+class PantryItem extends React.Component {
     render() {
         return (
             <button className="button is-success is-light is-outlined is-inverted">
@@ -10,4 +10,4 @@ class pantryItem extends React.Component {
     }
 }
 
-export default pantryItem;
+export default PantryItem;
