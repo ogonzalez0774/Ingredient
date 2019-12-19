@@ -1,13 +1,15 @@
 import React, { Children } from "react";
 
-function FloatBox(props) {
-  return (
-    <div className="tile is-ancestor">
-      <div className="container">
-        <div className="box has-background-white">{Children}</div>
+class FloatBox extends React.Component {
+  render() {
+    return (
+      <div className="tile is-ancestor">
+        <div className="container">
+          <div className="box has-background-white">{Children}</div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default FloatBox;
