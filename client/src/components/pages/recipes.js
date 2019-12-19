@@ -11,7 +11,7 @@ class recipe extends React.Component {
     this.searchRecipes(this.state.search);
   };
 
-  searchRecipes = query => {
+  recipeSearch = query => {
     API.search(query).then(res => this.setState({ result: res.data }));
   };
 
@@ -25,17 +25,47 @@ class recipe extends React.Component {
   render() {
     return (
       <div>
-        <p>Your Searched For {this.state.search}</p>
-        <form className="form">
-          <input
-            value={this.state.firstName}
-            name="search"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Search"
-          />
-          <button onClick={this.handleFormSubmit}>Submit</button>
-        </form>
+        {" "}
+        <div className="tile is-ancestor">
+          <div className="container">
+            <div className="box has-background-white">
+              <div className="tile">
+                <div className="tile is-parent">
+                  <article className="tile is-child notification is-bold has-background-grey-light">
+                    <p className="title has-text-white">Search:</p>
+                    <div className="field">
+                      <div className="control">
+                        <input
+                          className="input is-success"
+                          type="text"
+                          placeholder="What're you hungry for?"
+                        />
+                        <button
+                          className="button is-success"
+                          onClick={recipeSearch()}
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <div className="tile is-parent">
+                <article className="tile is-child notification is-bold is-success">
+                  <p className="title">Recipe Number One</p>
+                  <p className="subtitle">
+                    This lovely dish is the first one we found! It incorporates
+                    flavors and scents from many, many different cultures around
+                    the...
+                  </p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+        ;
       </div>
     );
   }
