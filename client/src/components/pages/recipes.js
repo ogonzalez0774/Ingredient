@@ -51,17 +51,6 @@ class recipe extends React.Component {
                   </article>
                 </div>
               </div>
-
-              <div className="tile is-parent">
-                <article className="tile is-child notification is-bold is-success">
-                  <p className="title">Recipe Number One</p>
-                  <p className="subtitle">
-                    This lovely dish is the first one we found! It incorporates
-                    flavors and scents from many, many different cultures around
-                    the...
-                  </p>
-                </article>
-              </div>
             </div>
           </div>
         </div>
