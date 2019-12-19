@@ -3,8 +3,10 @@ import React from "react";
 class pantryItem extends React.Component {
     render() {
         return (
-            <p>{this.props.name}</p>
-        )
+            <button className="button is-success is-light is-outlined is-inverted">
+                {this.props.name}
+            </button>
+        );
     }
 }
 

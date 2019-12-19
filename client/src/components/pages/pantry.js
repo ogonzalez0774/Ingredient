@@ -4,6 +4,7 @@ import pantryItem from "../pantryItem";
 
 class pantry extends React.Component {
     state = {
+        userId: 0,
         ingredients: [
             {
                 name: "chicken",
@@ -24,13 +25,30 @@ class pantry extends React.Component {
         ]
     };
 
-    componentDidMount() {}
+    componentDidMount() {
+        this.loadPantry();
+    }
 
-    toggleIngredient() {}
+    loadPantry() {
+        API.getUser({ id: this.state.userId }).then(user => {
+            this.setState({ ingredients: user.ingredients });
+        });
+    }
+
+    togglePantryItem(userId) {
+        API.updateUser(
+            { id: userId },
+            { $set: { ingredients: this.state.ingredients } }
+        );
+        this.loadPantry();
+    }
 
     render() {
         return this.state.ingredients.map(ingredient => (
-            <pantryItem name={ingredient.name} />
+            <pantryItem
+                name={ingredient.name}
+                onClick={() => togglePantryItem(userId)}
+            />
         ));
     }
 }
