@@ -38,6 +38,8 @@ const schedule = {
 // this can probably just be inside generateList()
 function pantryCheck(ingredient, groceries) {
   if (!pantry[ingredient]) pantry[ingredient] = 0;
+
+  // parse(stringify) generates a clone without altering original
   const clone = JSON.parse(JSON.stringify(groceries));
   groceries[ingredient] -= pantry[ingredient];
   pantry[ingredient] -= clone[ingredient];
