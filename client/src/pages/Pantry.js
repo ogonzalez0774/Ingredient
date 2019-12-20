@@ -50,6 +50,7 @@ class Pantry extends React.Component {
     return this.state.ingredients.map(ingredient => (
       <PantryItem
         name={ingredient.name}
+        key={ingredient.name}
         amount={ingredient.amount}
         onClick={() =>
           this.togglePantryItem(this.state.userId, ingredient.name)
