@@ -1,16 +1,22 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Pantry from "./pages/Pantry";
+import Shoplist from "./pages/Shoplist";
+import Container from "./pages/Container";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Project Skeleton</p>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <>
+        {/* <Container> */}
+        <Pantry />
+        <Shoplist />
+
+        {/* </Container> */}
+      </>
+    );
+  }
 }
 
 export default App;
