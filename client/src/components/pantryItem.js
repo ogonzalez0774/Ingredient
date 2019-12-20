@@ -1,11 +1,16 @@
 import React from "react";
 
-class pantryItem extends React.Component {
+class PantryItem extends React.Component {
     render() {
         return (
-            <p>{this.props.name}</p>
-        )
+            <button
+                className="button is-success is-light is-outlined is-inverted"
+                onClick={this.props.onClick}
+            >
+                {this.props.name}, {this.props.amount}
+            </button>
+        );
     }
 }
 
-export default pantryItem;
+export default PantryItem;

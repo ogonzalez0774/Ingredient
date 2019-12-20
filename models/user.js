@@ -2,13 +2,19 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    username: { type: String, required: true },
-    password: { type: String, required: true },
-    ingredients: [{ name: String, amount: Number, unit: String }],
-    favoriteRecipes: [],
-    queuedRecipes: []
+  username: { type: String, required: true },
+  // password: { type: String, required: true },
+  ingredients: [
+    {
+      name: String,
+      amount: Number
+      // , unit: String
+    }
+  ],
+  favoriteRecipes: [],
+  queuedRecipes: []
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema, "User");
 
 module.exports = User;
