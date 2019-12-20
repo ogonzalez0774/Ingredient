@@ -1,53 +1,55 @@
 import React from "react";
 import API from "../../utils/API";
-import recipe from "../recipe";
+import Recipe from "../Recipe";
 
-class recipe extends React.Component {
-  state = {
-    recipes: [
-      {
-        name: "Chicken Alfredo",
-        ingredients: [
-          "Kosher salt",
-          "freshly ground black pepper",
-          "fettuccine",
-          "Olive oil",
-          "chicken breast",
-          "unsalted butter",
-          "heavy cream",
-          "freshly grated nutmeg",
-          "Parmigiano-Reggiano"
+class TestRecipe extends React.Component {
+    state = {
+        recipes: [
+            {
+                name: "Chicken Alfredo",
+                ingredients: [
+                    "Kosher salt",
+                    "freshly ground black pepper",
+                    "fettuccine",
+                    "Olive oil",
+                    "chicken breast",
+                    "unsalted butter",
+                    "heavy cream",
+                    "freshly grated nutmeg",
+                    "Parmigiano-Reggiano"
+                ]
+            },
+            {
+                name: "BLT",
+                ingredients: ["bacon", "lettuce", "tomato", "bread", "mayo"]
+            },
+            {
+                name: "Cheese Burger",
+                ingredients: [
+                    "ground beef",
+                    "lettuce",
+                    "tomato",
+                    "bread",
+                    "mayo",
+                    "cheese"
+                ]
+            },
+            {
+                name: "Pizza",
+                ingredients: ["tomato sauce", "cheese", "dough", "pepperoni"]
+            }
         ]
-      },
-      {
-        name: "BTL",
-        ingredients: ["bacon", "lettuce", "tomato", "bread", "mayo"]
-      },
-      {
-        name: "Cheese Burger",
-        ingredients: [
-          "ground beef",
-          "lettuce",
-          "tomato",
-          "bread",
-          "mayo",
-          "cheese"
-        ]
-      },
-      {
-        name: "Pizza",
-        ingredients: ["tomato sause", "cheese", "dough", "pepperoni"]
-      }
-    ]
-  };
+    };
 
-  componentDidMount() {}
+    componentDidMount() {}
 
-  toggleIngredient() {}
+    toggleIngredient() {}
 
-  render() {
-    return this.state.recipes.ingredients.map(ingredient => (
-      <pantryItem name={ingredient.name} />
-    ));
-  }
+    render() {
+        return this.state.recipes.map(recipe => (
+            <Recipe name={recipe.name} ingredients={recipe.ingredients} />
+        ));
+    }
 }
+
+export default TestRecipe;
