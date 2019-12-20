@@ -8,6 +8,6 @@ export default {
         return axios.get("/api/users/" + id);
     },
     updateUser: function(id, userData) {
-        return axios.put("/api/users" + id, userData);
+        return axios.put("/api/users/" + id, userData);
     }
 };
