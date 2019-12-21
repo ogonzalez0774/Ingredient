@@ -1,6 +1,7 @@
 import React from "react";
 import API from "../utils/API";
 import ListItem from "../components/listItem";
+import Recipe from "../components/Recipe";
 
 class Shoplist extends React.Component {
     state = {
@@ -14,7 +15,8 @@ class Shoplist extends React.Component {
                     { name: "lemon", quantity: 1 },
                     { name: "salt", quantity: 1 },
                     { name: "blackpepper", quantity: 1 }
-                ]
+                ],
+                toggleShow: false
             },
 
             {
@@ -24,7 +26,8 @@ class Shoplist extends React.Component {
                     { name: "chicken", quantity: 1 },
                     { name: "tomato", quantity: 2 },
                     { name: "egg", quantity: 2 }
-                ]
+                ],
+                toggleShow: false
             },
 
             {
@@ -34,7 +37,8 @@ class Shoplist extends React.Component {
                     { name: "lemon", quantity: 1 },
                     { name: "salt", quantity: 1 },
                     { name: "blackpepper", quantity: 1 }
-                ]
+                ],
+                toggleShow: false
             }
         ]
     };
@@ -131,16 +135,45 @@ class Shoplist extends React.Component {
 
     render() {
         return (
-            <div classname="tile is-parent is-8">
+            <div className="tile is-parent is-8">
                 <article className="tile is-child notification is-bold is-warning">
                     <div>
                         <p className="subtitle">Queued Recipes:</p>
                         <ul>
-                            {this.state.schedule.map(recipe => (
-                                <button class="button is-warning is-light is-outlined is-inverted">
-                                    {recipe.name}
-                                </button>
-                            ))}
+                            {this.state.schedule.map(recipe => {
+                                return (
+                                    <>
+                                        <button
+                                            className="button is-warning is-light is-outlined is-inverted"
+                                            onClick={() => {
+                                                const mealSchedule = this.state
+                                                    .schedule;
+                                                for (const scheduledRecipe of mealSchedule) {
+                                                    if (
+                                                        scheduledRecipe.name ===
+                                                        recipe.name
+                                                    ) {
+                                                        scheduledRecipe.toggleShow = !scheduledRecipe.toggleShow;
+                                                    }
+                                                }
+                                                this.setState({
+                                                    schedule: mealSchedule
+                                                });
+                                            }}
+                                        >
+                                            {recipe.name}
+                                        </button>
+                                        {recipe.toggleShow ? (
+                                            <Recipe
+                                                name={recipe.name}
+                                                ingredients={recipe.ingredients}
+                                            />
+                                        ) : (
+                                            <></>
+                                        )}
+                                    </>
+                                );
+                            })}
                         </ul>
                     </div>
                     <form onSubmit={this.handleSubmit}>
