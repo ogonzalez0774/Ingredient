@@ -1,8 +1,8 @@
 import React from "react";
 import API from "../../utils/API";
-import recipe from "../recipe";
+import Recipe from "../recipe";
 
-class recipe extends React.Component {
+class Recipe extends React.Component {
   state = {
     recipes: [
       {
@@ -52,4 +52,4 @@ class recipe extends React.Component {
   }
 }
 
-export default recipe;
+export default Recipe;
