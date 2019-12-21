@@ -8,67 +8,6 @@ class Shoplist extends React.Component {
     shoppingList: {}
   };
 
-  //   pantryCheck(ingredient, groceries) {
-  //     const pantry = this.props.ingredients;
-  //     let ingredientAmount = 0;
-  //     for (const item of pantry) {
-  //       if (item.name === ingredient) {
-  //         ingredientAmount = item.amount;
-  //       }
-  //     }
-  //     groceries[ingredient] -= ingredientAmount;
-
-  // parse(stringify) generates a clone without altering original
-  // const clone = JSON.parse(JSON.stringify(groceries));
-
-  // does not alter pantry for now
-  // pantry[ingredient] -= clone[ingredient];
-  // if (pantry[ingredient] < 0) {
-  //   pantry[ingredient] = 0;
-  // }
-
-  // we'll eventually want to delete amount0 items off pantry as well
-
-  //     if (groceries[ingredient] <= 0) {
-  //       delete groceries[ingredient];
-  //     }
-  //   }
-
-  //   componentDidMount() {
-  //     setTimeout(() => {
-  //       this.generateList(this.props.queuedRecipes);
-  //     }, 1500);
-  //   }
-
-  //   generateList(mealPlan) {
-  //     const groceries = { fish: 1, lemon: 1, lettuce: 1, tomato: 1, egg: 1 };
-
-  //     // function generates combined ingredients list regardless of pantry quantity
-  //     for (const meal in mealPlan) {
-  //       const recipe = mealPlan[meal];
-
-  //       // forEach and forIn are async, there's probably a cleaner way to do this
-  //       recipe.ingredients.forEach(ingredient => {
-  //         if (!groceries[ingredient.name]) {
-  //           groceries[ingredient.name] = 0;
-  //         }
-
-  //         // sets to 1 for now, not checking amounts
-  //         // groceries[ingredient.name] += ingredient.quantity;
-  //         groceries[ingredient.name] = 1;
-  //       });
-  //     }
-
-  //     for (const item in groceries) {
-  //       this.pantryCheck(item, groceries);
-  //     }
-
-  //     // will use an ingredient library to convert units to purchasable amount
-  //     this.setState({ shoppingList: groceries });
-  //   }
-
-  // adding items to pantry:
-  // needs different functions based on submit button
   handleSubmit = event => {
     event.preventDefault();
     API.getUser("5dfafab3a612c2884b4bd0bd").then(user => {
@@ -93,8 +32,10 @@ class Shoplist extends React.Component {
 
   render() {
     return (
+      // YELLOW BOX
       <div className="tile is-parent is-8">
         <article className="tile is-child notification is-bold is-warning">
+          {/* QUEUE */}
           <div>
             <p className="subtitle">Queued Recipes:</p>
             <ul>
@@ -130,6 +71,8 @@ class Shoplist extends React.Component {
               })}
             </ul>
           </div>
+
+          {/* SHOPPING LIST */}
           <form onSubmit={this.handleSubmit}>
             <p className="subtitle">Shopping List</p>
 
