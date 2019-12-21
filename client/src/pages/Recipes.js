@@ -52,10 +52,10 @@ class Recipe extends React.Component {
                   </article>
                 </div>
               </div>
+              <TestRecipe />
             </div>
           </div>
         </div>
-        <TestRecipe />
       </div>
     );
   }
