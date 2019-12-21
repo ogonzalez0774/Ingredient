@@ -11,6 +11,7 @@ import Recipe from "./pages/Recipes";
 
 class App extends React.Component {
   state = {
+    email: "",
     userId: "5dfafab3a612c2884b4bd0bd",
     ingredients: []
   };
@@ -26,9 +27,12 @@ class App extends React.Component {
     this.forceUpdate();
   };
 
+  login = (email, password) => {};
+  logout() {}
+
   render() {
     return (
-      <Router>
+      <Router login={this.login} logout={this.logout}>
         <Header />
         <Switch>
           <Route path="/pantry">
@@ -42,9 +46,9 @@ class App extends React.Component {
               loadPantry={this.loadPantry}
               userId={this.state.userId}
             />
-            <Route path="/">
-              <Recipe />
-            </Route>
+          </Route>
+          <Route path="/">
+            <Recipe />
           </Route>
         </Switch>
         <Footer />
