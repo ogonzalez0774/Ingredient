@@ -6,8 +6,8 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Pantry from "./pages/Pantry";
 import Shoplist from "./pages/Shoplist";
-import Container from "./pages/Container";
 import API from "./utils/API";
+import Recipe from "./pages/Recipes";
 
 class App extends React.Component {
   state = {
@@ -28,23 +28,27 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
+      <Router>
         <Header />
-        {/* <Container> */}
-        <Pantry
-          ingredients={this.state.ingredients}
-          loadPantry={this.loadPantry}
-          userId={this.state.userId}
-        />
-        <Shoplist
-          ingredients={this.state.ingredients}
-          loadPantry={this.loadPantry}
-          userId={this.state.userId}
-        />
-
-        {/* </Container> */}
+        <Switch>
+          <Route path="/pantry">
+            <Pantry
+              ingredients={this.state.ingredients}
+              loadPantry={this.loadPantry}
+              userId={this.state.userId}
+            />
+            <Shoplist
+              ingredients={this.state.ingredients}
+              loadPantry={this.loadPantry}
+              userId={this.state.userId}
+            />
+          </Route>
+          <Route path="/">
+            <Recipe />
+          </Route>
+        </Switch>
         <Footer />
-      </>
+      </Router>
     );
   }
 }
