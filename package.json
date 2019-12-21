@@ -2,6 +2,7 @@
   "name": "ingredient",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://fast-wave-16480.herokuapp.com/",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
