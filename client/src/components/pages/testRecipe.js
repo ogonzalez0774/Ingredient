@@ -46,8 +46,10 @@ class recipe extends React.Component {
   toggleIngredient() {}
 
   render() {
-    return this.state.recipes.ingredients.map(ingredient => (
-      <pantryItem name={ingredient.name} />
+    return this.state.recipes.ingredients.map(recipe => (
+      <Recipe name={recipe.name} />
     ));
   }
 }
+
+export default recipe;
