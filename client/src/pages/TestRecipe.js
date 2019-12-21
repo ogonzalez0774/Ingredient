@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../utils/API";
-import Recipe from "../components/Recipe";
+import Recipe from "../components/recipe";
 
 class TestRecipe extends React.Component {
   state = {

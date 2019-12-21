@@ -1,5 +1,6 @@
 import React from "react";
 import API from "../utils/API";
+import TestRecipe from "./TestRecipe";
 
 class Recipe extends React.Component {
   state = {
@@ -54,7 +55,7 @@ class Recipe extends React.Component {
             </div>
           </div>
         </div>
-        ;
+        <TestRecipe />
       </div>
     );
   }
