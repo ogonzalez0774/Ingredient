@@ -25,7 +25,6 @@ class Shoplist extends React.Component {
         }).then(() => {
           this.props.loadPantry(this.props.userId);
         });
-        //   .then(() => this.generateList(this.props.queuedRecipes));
       });
     });
   };
