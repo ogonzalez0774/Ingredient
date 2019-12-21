@@ -1,5 +1,6 @@
 import React from "react";
 import API from "../utils/API";
+import TestRecipe from "./TestRecipe";
 
 class Recipe extends React.Component {
   state = {
@@ -25,6 +26,7 @@ class Recipe extends React.Component {
   render() {
     return (
       <div>
+        {" "}
         <div className="tile is-ancestor">
           <div className="container">
             <div className="box has-background-white">
@@ -50,10 +52,10 @@ class Recipe extends React.Component {
                   </article>
                 </div>
               </div>
+              <TestRecipe />
             </div>
           </div>
         </div>
-        ;
       </div>
     );
   }

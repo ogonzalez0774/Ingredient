@@ -7,8 +7,14 @@ class Header extends React.Component {
       <section className="hero is-info is-bold">
         <div className="hero-body">
           <div className="container">
-            <h1 className="title">Supper Time</h1>
-            <h2 className="subtitle">Hello, username!</h2>
+            <h1 className="title">
+              <a href="/" className="has-text-white">
+                Supper Time
+              </a>
+            </h1>
+            <h2 className="subtitle">
+              Welcome, <a href="/pantry">USERNAME</a>!
+            </h2>
           </div>
         </div>
       </section>
