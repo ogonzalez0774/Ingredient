@@ -10,7 +10,7 @@ class Result extends React.Component {
                         Ingredients:{" "}
                         <ul>
                             {this.props.ingredients.map(ingredient => {
-                                return <li>{ingredient}</li>;
+                                return <li>{ingredient.name}</li>;
                             })}
                         </ul>
                     </p>
