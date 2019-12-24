@@ -1,3 +1,5 @@
+"use strict";
+
 import "bulma/css/bulma.css";
 
 import "./App.css";
