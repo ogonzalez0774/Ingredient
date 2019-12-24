@@ -14,8 +14,12 @@ app.use(express.json());
 
 app.use(routes);
 
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/cookbookDB");
 
 app.listen(PORT, () => {
-    console.log("App listening on port " + PORT);
+  console.log("App listening on port " + PORT);
 });
