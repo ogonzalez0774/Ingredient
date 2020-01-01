@@ -3,19 +3,16 @@ import API from "../utils/API";
 import PantryItem from "../components/pantryItem";
 
 class Pantry extends React.Component {
-  componentDidMount() {
-    this.props.loadPantry(this.props.userId);
-  }
-
   togglePantryItem(userId, ingredientName) {
     const newIngredients = this.props.ingredients;
+
     for (const ingredient of newIngredients) {
       if (ingredient.name === ingredientName) {
         ingredient.amount = (ingredient.amount + 1) % 2;
       }
     }
     API.updateUser(userId, { ingredients: newIngredients });
-    this.props.loadPantry();
+    this.props.loadPantry(userId);
   }
 
   render() {
