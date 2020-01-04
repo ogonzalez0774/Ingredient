@@ -1,23 +1,67 @@
 import React from "react";
-class Auth extends React.Component {
+
+const initialState = {
+  email: "",
+  password: "",
+  error: null
+};
+class Login extends React.Component {
+  state = { ...initialState };
+
+  onSubmit = event => {
+    event.preventDefault();
+    const { email, password } = this.state;
+    this.props.firebase
+      .loginUser(email, password)
+      .then(authUser => {
+        console.log(authUser);
+        this.setState({ ...initialState });
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({ error });
+      });
+  };
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
   render() {
+    const { username, email, password, error } = this.state;
     return (
-      <form action="login" method="get">
-        <label for="username">
-          username:
-          <input className="input is-small" type="text" name="username" />
-        </label>
-        <br />
-        <label for="password">
-          password:
-          <input className="input is-small" type="password" name="password" />
-        </label>
-        <br />
-        <input className="button" type="submit" value="Submit" />
-        <br />
-        Don't have an account? <a href="#">Sign up here</a>
-        {/* <!-- this link will change the form out to create user --> */}
-      </form>
+      <div className="tile is-parent is-8">
+        <div className="tile is-child notification">
+          <form action="" onSubmit={this.onSubmit}>
+            <label htmlFor="email">
+              email:
+              <input
+                className="input is-small"
+                value={email}
+                onChange={this.onChange}
+                type="text"
+                name="email"
+              />
+            </label>
+            <br />
+            <label htmlFor="password">
+              password:
+              <input
+                className="input is-small"
+                value={password}
+                onChange={this.onChange}
+                type="password"
+                name="password"
+              />
+            </label>
+
+            <input className="button" type="submit" value="Submit" />
+
+            {error && <p>{error.message}</p>}
+          </form>
+          Don't have an account? <a href="#">Sign up here</a>
+        </div>
+      </div>
     );
   }
 }
+
+export default Login;
