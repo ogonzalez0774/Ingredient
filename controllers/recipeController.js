@@ -11,8 +11,7 @@ module.exports = {
         { name: { $regex: query, $options: "i" } },
         {
           ingredients: {
-            name: query,
-            amount: 1
+            $elemMatch: { name: { $regex: query, $options: "i" } }
           }
         }
       ]
