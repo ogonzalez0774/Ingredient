@@ -17,7 +17,7 @@ class Result extends React.Component {
             })}
           </ul>
           <button
-            className="button is-success is-light"
+            className="button is-success is-light is-small"
             onClick={() =>
               this.props.addToQueue({
                 name: this.props.name,
