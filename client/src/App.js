@@ -1,5 +1,3 @@
-"use strict";
-
 import "bulma/css/bulma.css";
 
 import "./App.css";
@@ -12,18 +10,30 @@ import Pantry from "./pages/Pantry";
 import Shoplist from "./pages/Shoplist";
 import API from "./utils/API";
 import Recipe from "./pages/Recipes";
+import Login from "./components/auth/login";
+import SignUpForm from "./components/auth/signup";
+import { FirebaseContext } from "./components/firebase/context";
 
+const initialState = {
+  authUser: null,
+  username: "",
+  ingredients: [],
+  queuedRecipes: [],
+  shoppingList: {}
+};
 class App extends React.Component {
-  state = {
-    email: "",
-    userId: "5dfafab3a612c2884b4bd0bd",
-    ingredients: [],
-    queuedRecipes: [],
-    shoppingList: {}
-  };
+  state = { ...initialState };
 
   componentDidMount() {
-    this.loadPantry(this.state.userId);
+    this.props.firebase.auth.onAuthStateChanged(authUser => {
+      this.setState({ authUser });
+
+      if (this.state.authUser) {
+        this.loadPantry(this.state.authUser.email);
+      } else {
+        this.setState({ ...initialState });
+      }
+    });
   }
 
   pantryCheck(ingredient, groceries) {
@@ -66,40 +76,54 @@ class App extends React.Component {
     this.setState({ shoppingList: groceries });
   }
 
-  loadPantry = id => {
-    API.getUser(id).then(user => {
+  loadPantry = email => {
+    API.getUser(email).then(user => {
       this.setState({
+        username: user.data.username,
         ingredients: user.data.ingredients,
         queuedRecipes: user.data.queuedRecipes
       });
+
       this.generateList(user.data.queuedRecipes);
     });
   };
 
-  login = (email, password) => {};
-  logout() {}
-
   render() {
     return (
-      <Router login={this.login} logout={this.logout}>
-        <Header />
+      <Router>
+        <Header username={this.state.username} />
+
+        <FirebaseContext.Consumer>
+          {firebase => <Login firebase={firebase} />}
+        </FirebaseContext.Consumer>
+        <FirebaseContext.Consumer>
+          {firebase => <SignUpForm firebase={firebase} />}
+        </FirebaseContext.Consumer>
+
         <Switch>
           <Route path="/pantry">
-            <Pantry
-              ingredients={this.state.ingredients}
-              loadPantry={this.loadPantry}
-              userId={this.state.userId}
-            />
-            <Shoplist
-              ingredients={this.state.ingredients}
-              loadPantry={this.loadPantry}
-              shoppingList={this.state.shoppingList}
-              userId={this.state.userId}
-              queuedRecipes={this.state.queuedRecipes}
-            />
+            {this.state.authUser ? (
+              <>
+                <Pantry
+                  authUser={this.state.authUser}
+                  ingredients={this.state.ingredients}
+                  loadPantry={this.loadPantry}
+                />
+                <Shoplist
+                  authUser={this.state.authUser}
+                  ingredients={this.state.ingredients}
+                  loadPantry={this.loadPantry}
+                  shoppingList={this.state.shoppingList}
+                  queuedRecipes={this.state.queuedRecipes}
+                />
+              </>
+            ) : (
+              ""
+            )}
           </Route>
+
           <Route path="/">
-            <Recipe />
+            <Recipe authUser={this.state.authUser} />
           </Route>
         </Switch>
         <Footer />
