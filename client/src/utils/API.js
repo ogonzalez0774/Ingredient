@@ -1,13 +1,16 @@
 import axios from "axios";
 
 export default {
-  createUser: function(id, userData) {
-    return axios.post("/api/users/" + id, userData);
-  },
-  getUser: function(id) {
-    return axios.get("/api/users/" + id);
-  },
-  updateUser: function(id, userData) {
-    return axios.put("/api/users/" + id, userData);
-  }
+    createUser: function(id, userData) {
+        return axios.post("/api/users/" + id, userData);
+    },
+    getUser: function(id) {
+        return axios.get("/api/users/" + id);
+    },
+    updateUser: function(id, userData) {
+        return axios.put("/api/users/" + id, userData);
+    },
+    recipeSearch: function(queryString) {
+        return axios.get("/api/recipes/" + encodeURI(queryString));
+    }
 };
