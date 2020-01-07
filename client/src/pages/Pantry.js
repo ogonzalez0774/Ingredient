@@ -21,7 +21,7 @@ class Pantry extends React.Component {
 
   render() {
     return (
-      <div className="tile is-parent is-8">
+      <div className="tile is-parent">
         <article className="tile is-child notification is-bold is-success">
           <p className="title">My Pantry:</p>
           <p className="subtitle has-text-centered">
