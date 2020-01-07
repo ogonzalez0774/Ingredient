@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import API from "../../utils/API";
 // import { Link } from "react-router-dom";
 
 const initialState = {
@@ -14,11 +15,11 @@ class SignUpForm extends Component {
   onSubmit = event => {
     event.preventDefault();
     const { username, email, passwordOne } = this.state;
-    this.props.firebase.signOutUser();
+
     this.props.firebase
       .signUpUser(username, email, passwordOne)
       .then(authUser => {
-        console.log(authUser);
+        API.createUser(email, { email: email, username: username });
         this.setState({ ...initialState });
       })
       .catch(error => {
@@ -26,17 +27,39 @@ class SignUpForm extends Component {
       });
   };
   onChange = event => {
-    if (event.target.name == "passwordTwo") {
+    console.log(event.target.value);
+    if (
+      event.target.name === "passwordTwo" &&
+      event.target.value !== this.state.passwordOne
+    ) {
+      event.target.setCustomValidity("Passwords must match");
+    } else {
+      event.target.setCustomValidity("");
     }
 
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState(
+      { [event.target.name]: event.target.value },
+
+      () => {
+        // console.log(event.target.checkValidity());
+        // console.log(event.target.value);
+        console.log(this.state.passwordOne);
+      }
+    );
   };
 
   render() {
     const { username, email, passwordOne, passwordTwo, error } = this.state;
 
     return (
-      <div className="tile is-parent is-8">
+      <div
+        style={{
+          position: "fixed",
+          right: 0,
+          top: 110
+        }}
+        className="tile is-parent is-5"
+      >
         <div className="tile is-child notification">
           <form action="" onSubmit={this.onSubmit}>
             <label htmlFor="username">
@@ -81,6 +104,7 @@ class SignUpForm extends Component {
                 value={passwordTwo}
                 onChange={this.onChange}
                 type="password"
+                // pattern={passwordOne}
                 required
               />
             </label>
