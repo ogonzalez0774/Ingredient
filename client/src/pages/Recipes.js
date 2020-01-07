@@ -36,7 +36,6 @@ class Recipes extends React.Component {
   render() {
     return (
       <div>
-        {" "}
         <div className="tile is-ancestor">
           <div className="container">
             <div className="box has-background-grey-lighter">

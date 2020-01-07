@@ -10,7 +10,7 @@ class Shoplist extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    API.getUser("5dfafab3a612c2884b4bd0bd").then(user => {
+    API.getUser(this.props.authUser.email).then(user => {
       const checkboxes = document.getElementsByName("addItem");
       const newIngredients = user.data.ingredients;
       checkboxes.forEach(element => {
@@ -20,10 +20,10 @@ class Shoplist extends React.Component {
             if (ingredient.name === element.value) ingredient.amount = 1;
           });
         }
-        API.updateUser("5dfafab3a612c2884b4bd0bd", {
+        API.updateUser(this.props.authUser.email, {
           ingredients: newIngredients
         }).then(() => {
-          this.props.loadPantry(this.props.userId);
+          this.props.loadPantry(this.props.authUser.email);
         });
       });
     });
@@ -79,7 +79,6 @@ class Shoplist extends React.Component {
             <form onSubmit={this.handleSubmit}>
               <p className="subtitle">Shopping List</p>
 
-              {/* {console.log(this.props.shoppingList)} */}
               {Object.keys(this.props.shoppingList).map(title => (
                 <ListItem
                   name={title}
