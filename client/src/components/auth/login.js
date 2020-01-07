@@ -11,6 +11,7 @@ class Login extends React.Component {
   onSubmit = event => {
     event.preventDefault();
     const { email, password } = this.state;
+    this.props.openLogin();
     this.props.firebase
       .loginUser(email, password)
       .then(authUser => {
@@ -26,9 +27,16 @@ class Login extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
   render() {
-    const { username, email, password, error } = this.state;
+    const { email, password, error } = this.state;
     return (
-      <div className="tile is-parent is-8">
+      <div
+        style={{
+          position: "fixed",
+          right: 0,
+          top: 110
+        }}
+        className="tile is-parent is-5"
+      >
         <div className="tile is-child notification">
           <form action="" onSubmit={this.onSubmit}>
             <label htmlFor="email">
