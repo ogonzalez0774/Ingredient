@@ -5,7 +5,7 @@ class FloatBox extends React.Component {
     return (
       <div className="tile is-ancestor">
         <div className="container">
-          <div className="box has-background-white">{Children}</div>
+          <div className="box has-background-white-bis">{Children}</div>
         </div>
       </div>
     );

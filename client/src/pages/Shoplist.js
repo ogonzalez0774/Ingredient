@@ -30,10 +30,10 @@ class Shoplist extends React.Component {
   };
 
   render() {
-    if (this.props.authUser) {
-      return (
-        // YELLOW BOX
-        <div className="tile is-parent is-8">
+    return (
+      // YELLOW BOX
+      <div className="columns">
+        <div className="column tile is-parent is-two-thirds">
           <article className="tile is-child notification is-bold is-warning">
             {/* QUEUE */}
             <div>
@@ -71,8 +71,11 @@ class Shoplist extends React.Component {
                 })}
               </ul>
             </div>
-
-            {/* SHOPPING LIST */}
+          </article>
+        </div>
+        {/* SHOPPING LIST */}
+        <div className="column tile is-parent">
+          <article className="tile is-child notification is-bold is-info">
             <form onSubmit={this.handleSubmit}>
               <p className="subtitle">Shopping List</p>
 
@@ -89,20 +92,20 @@ class Shoplist extends React.Component {
                 type="submit"
                 name="addSelected"
                 value="Add Selected"
-                className="button is-warning is-light is-outlined is-inverted"
+                className="button is-info is-light is-outlined is-inverted"
               ></input>
 
               <input
                 type="submit"
                 name="addAll"
                 value="Add All"
-                className="button is-warning is-light is-outlined is-inverted"
+                className="button is-info is-light is-outlined is-inverted"
               ></input>
             </form>
           </article>
         </div>
-      );
-    } else return "";
+      </div>
+    );
   }
 }
 

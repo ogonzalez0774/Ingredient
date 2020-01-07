@@ -9,9 +9,24 @@ class Result extends React.Component {
           <p className="subtitle">Ingredients: </p>
           <ul>
             {this.props.ingredients.map(ingredient => {
-              return <li key={ingredient.name}>{ingredient.name}</li>;
+              return (
+                <li key={ingredient.name}>
+                  {ingredient.name} {ingredient.amount}
+                </li>
+              );
             })}
           </ul>
+          <button
+            className="button is-success is-light is-small"
+            onClick={() =>
+              this.props.addToQueue({
+                name: this.props.name,
+                ingredients: this.props.ingredients
+              })
+            }
+          >
+            Add to queue
+          </button>
         </article>
       </div>
     );

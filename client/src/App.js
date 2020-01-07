@@ -9,7 +9,7 @@ import Footer from "./components/footer/footer";
 import Pantry from "./pages/Pantry";
 import Shoplist from "./pages/Shoplist";
 import API from "./utils/API";
-import Recipe from "./pages/Recipes";
+import Recipes from "./pages/Recipes";
 
 import Login from "./components/auth/login";
 import SignUpForm from "./components/auth/signup";
@@ -24,6 +24,7 @@ const initialState = {
   queuedRecipes: [],
   shoppingList: {}
 };
+
 class App extends React.Component {
   state = { ...initialState };
 
@@ -45,7 +46,6 @@ class App extends React.Component {
     } else this.setState({ headerState: "login" });
   };
   openSignup = () => {
-    console.log("opensignup");
     if (this.state.headerState === "signup") {
       this.setState({ headerState: "main" });
     } else this.setState({ headerState: "signup" });
@@ -90,6 +90,16 @@ class App extends React.Component {
     // will use an ingredient library to convert units to purchasable amount
     this.setState({ shoppingList: groceries });
   }
+
+  loadPantry = id => {
+    API.getUser(id).then(user => {
+      this.setState({
+        ingredients: user.data.ingredients,
+        queuedRecipes: user.data.queuedRecipes
+      });
+      this.generateList(user.data.queuedRecipes);
+    });
+  };
 
   loadPantry = email => {
     API.getUser(email).then(user => {
@@ -141,7 +151,7 @@ class App extends React.Component {
           </Route>
 
           <Route path="/">
-            <Recipe authUser={this.state.authUser} />
+            <Recipes authUser={this.state.authUser} />
           </Route>
         </Switch>
         {this.state.headerState === "login" ? (
