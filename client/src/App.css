@@ -1,3 +1,7 @@
+.container {
+  margin: 130px auto;
+}
+
 .App {
   text-align: center;
 }
