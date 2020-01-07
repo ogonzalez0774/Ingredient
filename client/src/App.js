@@ -10,11 +10,14 @@ import Pantry from "./pages/Pantry";
 import Shoplist from "./pages/Shoplist";
 import API from "./utils/API";
 import Recipe from "./pages/Recipes";
+
 import Login from "./components/auth/login";
 import SignUpForm from "./components/auth/signup";
+
 import { FirebaseContext } from "./components/firebase/context";
 
 const initialState = {
+  headerState: "main",
   authUser: null,
   username: "",
   ingredients: [],
@@ -35,6 +38,18 @@ class App extends React.Component {
       }
     });
   }
+
+  openLogin = () => {
+    if (this.state.headerState === "login") {
+      this.setState({ headerState: "main" });
+    } else this.setState({ headerState: "login" });
+  };
+  openSignup = () => {
+    console.log("opensignup");
+    if (this.state.headerState === "signup") {
+      this.setState({ headerState: "main" });
+    } else this.setState({ headerState: "signup" });
+  };
 
   pantryCheck(ingredient, groceries) {
     const pantry = this.state.ingredients;
@@ -91,15 +106,18 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Header username={this.state.username} />
-
         <FirebaseContext.Consumer>
-          {firebase => <Login firebase={firebase} />}
+          {firebase => (
+            <Header
+              headerState={this.state.headerState}
+              openLogin={this.openLogin}
+              openSignup={this.openSignup}
+              firebase={firebase}
+              authUser={this.state.authUser}
+              username={this.state.username}
+            />
+          )}
         </FirebaseContext.Consumer>
-        <FirebaseContext.Consumer>
-          {firebase => <SignUpForm firebase={firebase} />}
-        </FirebaseContext.Consumer>
-
         <Switch>
           <Route path="/pantry">
             {this.state.authUser ? (
@@ -126,6 +144,20 @@ class App extends React.Component {
             <Recipe authUser={this.state.authUser} />
           </Route>
         </Switch>
+        {this.state.headerState === "login" ? (
+          <FirebaseContext.Consumer>
+            {firebase => (
+              <Login firebase={firebase} openLogin={this.openLogin} />
+            )}
+          </FirebaseContext.Consumer>
+        ) : this.state.headerState === "signup" ? (
+          <FirebaseContext.Consumer>
+            {firebase => (
+              <SignUpForm firebase={firebase} openSignup={this.openSignup} />
+            )}
+          </FirebaseContext.Consumer>
+        ) : null}
+
         <Footer />
       </Router>
     );
