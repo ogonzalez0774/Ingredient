@@ -105,22 +105,22 @@ class App extends React.Component {
 
   //Will be passed as prop to Recipes and Shoplist
   addToQueue = recipe => {
-    API.getUser(this.state.userId).then(user => {
+    API.getUser(this.state.authUser.email).then(user => {
       const newRecipes = user.data.queuedRecipes;
       newRecipes.push(recipe);
-      API.updateUser(this.state.userId, { queuedRecipes: newRecipes });
+      API.updateUser(this.state.authUser.email, { queuedRecipes: newRecipes });
     });
   };
 
   removeFromQueue = recipeName => {
-    API.getUser(this.state.userId).then(user => {
+    API.getUser(this.state.authUser.email).then(user => {
       const newRecipes = user.data.queuedRecipes;
       for (let i = 0; i < user.data.queuedRecipes.length; i++) {
         if (newRecipes[i].name === recipeName) {
           newRecipes.splice(i, 1);
         }
       }
-      API.updateUser(this.state.userId, { queuedRecipes: newRecipes });
+      API.updateUser(this.state.authUser.email, { queuedRecipes: newRecipes });
     });
   };
 
