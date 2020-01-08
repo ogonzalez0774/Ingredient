@@ -21,13 +21,14 @@ class SignUpForm extends Component {
       .then(authUser => {
         API.createUser(email, { email: email, username: username });
         this.setState({ ...initialState });
+        this.props.openSignup();
       })
       .catch(error => {
         this.setState({ error });
       });
   };
+
   onChange = event => {
-    console.log(event.target.value);
     if (
       event.target.name === "passwordTwo" &&
       event.target.value !== this.state.passwordOne
@@ -37,15 +38,7 @@ class SignUpForm extends Component {
       event.target.setCustomValidity("");
     }
 
-    this.setState(
-      { [event.target.name]: event.target.value },
-
-      () => {
-        // console.log(event.target.checkValidity());
-        // console.log(event.target.value);
-        console.log(this.state.passwordOne);
-      }
-    );
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
