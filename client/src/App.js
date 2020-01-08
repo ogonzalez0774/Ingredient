@@ -53,13 +53,13 @@ class App extends React.Component {
 
   pantryCheck(ingredient, groceries) {
     const pantry = this.state.ingredients;
-    let ingredientAmount = 0;
+    let ingredientQuantity = 0;
     for (const item of pantry) {
       if (item.name === ingredient) {
-        ingredientAmount = item.amount;
+        ingredientQuantity = item.quantity;
       }
     }
-    groceries[ingredient] -= ingredientAmount;
+    groceries[ingredient] -= ingredientQuantity;
     if (groceries[ingredient] <= 0) {
       delete groceries[ingredient];
     }
@@ -77,9 +77,9 @@ class App extends React.Component {
           groceries[ingredient.name] = 0;
         }
 
-        // sets to 1 for now, not checking amounts
-        // groceries[ingredient.name] += ingredient.quantity;
-        groceries[ingredient.name] = 1;
+        // refactored to add quantity
+        groceries[ingredient.name] += ingredient.quantity;
+        // groceries[ingredient.name] = 1;
       });
     }
 
@@ -90,16 +90,6 @@ class App extends React.Component {
     // will use an ingredient library to convert units to purchasable amount
     this.setState({ shoppingList: groceries });
   }
-
-  loadPantry = id => {
-    API.getUser(id).then(user => {
-      this.setState({
-        ingredients: user.data.ingredients,
-        queuedRecipes: user.data.queuedRecipes
-      });
-      this.generateList(user.data.queuedRecipes);
-    });
-  };
 
   loadPantry = email => {
     API.getUser(email).then(user => {
