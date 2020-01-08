@@ -11,7 +11,7 @@ class Result extends React.Component {
             {this.props.ingredients.map(ingredient => {
               return (
                 <li key={ingredient.name}>
-                  {ingredient.name} {ingredient.amount}
+                  {ingredient.name} {ingredient.quantity}
                 </li>
               );
             })}

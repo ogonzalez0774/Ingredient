@@ -3,12 +3,16 @@ import API from "../utils/API";
 import PantryItem from "../components/pantryItem";
 
 class Pantry extends React.Component {
+  // instead of a toggle, this now just deletes an item off the pantry
+  // adding ingredients manually should occur separately
+
   togglePantryItem(userEmail, ingredientName) {
     const newIngredients = this.props.ingredients;
 
     for (const ingredient of newIngredients) {
       if (ingredient.name === ingredientName) {
-        ingredient.amount = (ingredient.amount + 1) % 2;
+        // ingredient.quantity = (ingredient.quantity + 1) % 2;
+        ingredient.quantity = 0;
       }
     }
     API.updateUser(userEmail, { ingredients: newIngredients });
@@ -16,7 +20,6 @@ class Pantry extends React.Component {
   }
 
   render() {
-    // if (this.props.authUser) {
     return (
       <div className="tile is-parent">
         <article className="tile is-child notification is-bold is-success">
@@ -26,7 +29,7 @@ class Pantry extends React.Component {
               <PantryItem
                 name={ingredient.name}
                 key={ingredient.name}
-                amount={ingredient.amount}
+                quantity={ingredient.quantity}
                 onClick={() =>
                   this.togglePantryItem(
                     this.props.authUser.email,
@@ -39,7 +42,6 @@ class Pantry extends React.Component {
         </article>
       </div>
     );
-    // } else return "";
   }
 }
 
