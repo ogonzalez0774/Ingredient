@@ -18,18 +18,30 @@ class Header extends React.Component {
           </h1>
 
           <h2 className="navbar-item subtitle has-text-white">
-            Welcome
-            <a href="/pantry">
-              {this.props.username ? ", " + this.props.username : ""}
+            Welcome{this.props.username ? "," : "!"}&nbsp;
+            <a href="/pantry" className=" has-text-warning">
+              {this.props.username ? this.props.username : ""}
             </a>
-            !
+            {this.props.username ? "!" : ""}
           </h2>
         </div>
         <div className="navbar-end">
           {this.props.username ? (
-            <FirebaseContext.Consumer>
-              {firebase => <SignoutButton firebase={firebase}></SignoutButton>}
-            </FirebaseContext.Consumer>
+            <>
+              <div className="navbar-item">
+                <a
+                  href="/pantry"
+                  className="button is-small is-success is-outlined is-inverted"
+                >
+                  My Pantry
+                </a>
+              </div>
+              <FirebaseContext.Consumer>
+                {firebase => (
+                  <SignoutButton firebase={firebase}></SignoutButton>
+                )}
+              </FirebaseContext.Consumer>
+            </>
           ) : (
             <>
               <OpenSignUp openSignup={this.props.openSignup} />

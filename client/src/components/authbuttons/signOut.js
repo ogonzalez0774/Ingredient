@@ -7,7 +7,10 @@ class SignoutButton extends React.Component {
   render() {
     return (
       <div className="navbar-item">
-        <button className="button" onClick={this.signout}>
+        <button
+          className="button is-small is-info is-outlined is-inverted"
+          onClick={this.signout}
+        >
           Sign Out
         </button>
       </div>

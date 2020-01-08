@@ -4,7 +4,10 @@ class OpenLogin extends React.Component {
   render() {
     return (
       <div className="navbar-item">
-        <button className="button" onClick={this.props.openLogin}>
+        <button
+          className="button is-small is-info is-outlined is-inverted"
+          onClick={this.props.openLogin}
+        >
           Log In
         </button>
       </div>
