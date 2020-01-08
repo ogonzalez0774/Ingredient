@@ -8,11 +8,10 @@ module.exports = {
         //const regex = new RegExp(".*" + query + ".*");
         db.Recipe.find({
             $or: [
-                { name: query },
+                { name: { $regex: query, $options: "i" } },
                 {
                     ingredients: {
-                        name: query,
-                        amount: 1
+                        $elemMatch: { name: { $regex: query, $options: "i" } }
                     }
                 }
             ]
@@ -22,6 +21,11 @@ module.exports = {
     },
     findById: function(req, res) {
         db.Recipe.findById(req.params.id)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    create: function(req, res) {
+        db.Recipe.create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     }
