@@ -33,6 +33,7 @@ class Shoplist extends React.Component {
 
   submitAll = event => {
     event.preventDefault();
+
     API.getUser(this.props.authUser.email).then(user => {
       const checkboxes = document.getElementsByName("addItem");
       const newIngredients = user.data.ingredients;
@@ -84,6 +85,8 @@ class Shoplist extends React.Component {
                         <Recipe
                           name={recipe.name}
                           ingredients={recipe.ingredients}
+                          addToQueue={this.props.addToQueue}
+                          removeFromQueue={this.props.removeFromQueue}
                         />
                       ) : (
                         <div className="hidden"></div>
@@ -112,7 +115,7 @@ class Shoplist extends React.Component {
 
               <input
                 type="submit"
-                // name="addSelected"
+                name="addSelected"
                 value="Add Selected"
                 readOnly
                 className="button is-info is-light is-outlined is-inverted"
@@ -120,9 +123,8 @@ class Shoplist extends React.Component {
 
               <input
                 name="addAll"
-                onClick={this.submitAll}
                 value="Add All"
-                readOnly
+                onClick={this.submitAll}
                 className="button is-info is-light is-outlined is-inverted"
               ></input>
             </form>

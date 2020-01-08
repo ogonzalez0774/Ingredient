@@ -51,7 +51,7 @@ class SignUpForm extends Component {
           right: 0,
           top: 110
         }}
-        className="tile is-parent is-5"
+        className="tile is-parent is-5 box has-background-white-bis"
       >
         <div className="tile is-child notification">
           <form action="" onSubmit={this.onSubmit}>

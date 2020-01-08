@@ -103,6 +103,27 @@ class App extends React.Component {
     });
   };
 
+  //Will be passed as prop to Recipes and Shoplist
+  addToQueue = recipe => {
+    API.getUser(this.state.userId).then(user => {
+      const newRecipes = user.data.queuedRecipes;
+      newRecipes.push(recipe);
+      API.updateUser(this.state.userId, { queuedRecipes: newRecipes });
+    });
+  };
+
+  removeFromQueue = recipeName => {
+    API.getUser(this.state.userId).then(user => {
+      const newRecipes = user.data.queuedRecipes;
+      for (let i = 0; i < user.data.queuedRecipes.length; i++) {
+        if (newRecipes[i].name === recipeName) {
+          newRecipes.splice(i, 1);
+        }
+      }
+      API.updateUser(this.state.userId, { queuedRecipes: newRecipes });
+    });
+  };
+
   render() {
     return (
       <Router>
@@ -133,6 +154,8 @@ class App extends React.Component {
                   loadPantry={this.loadPantry}
                   shoppingList={this.state.shoppingList}
                   queuedRecipes={this.state.queuedRecipes}
+                  addToQueue={this.addToQueue}
+                  removeFromQueue={this.removeFromQueue}
                 />
               </>
             ) : (
@@ -141,7 +164,11 @@ class App extends React.Component {
           </Route>
 
           <Route path="/">
-            <Recipes authUser={this.state.authUser} />
+            <Recipes
+              addToQueue={this.addToQueue}
+              removeFromQueue={this.removeFromQueue}
+              authUser={this.state.authUser}
+            />
           </Route>
         </Switch>
         {this.state.headerState === "login" ? (
