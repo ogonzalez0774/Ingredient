@@ -65,6 +65,27 @@ class App extends React.Component {
         this.setState({ shoppingList: groceries });
     }
 
+    //Will be passed as prop to Recipes and Shoplist
+    addToQueue = recipe => {
+        API.getUser(this.state.userId).then(user => {
+            const newRecipes = user.data.queuedRecipes;
+            newRecipes.push(recipe);
+            API.updateUser(this.state.userId, { queuedRecipes: newRecipes });
+        });
+    };
+
+    removeFromQueue = recipeName => {
+        API.getUser(this.state.userId).then(user => {
+            const newRecipes = user.data.queuedRecipes;
+            for (let i = 0; i < user.data.queuedRecipes.length; i++) {
+                if (newRecipes[i].name === recipeName) {
+                    newRecipes.splice(i, 1);
+                }
+            }
+            API.updateUser(this.state.userId, { queuedRecipes: newRecipes });
+        });
+    };
+
     loadPantry = id => {
         API.getUser(id).then(user => {
             this.setState({
@@ -92,10 +113,16 @@ class App extends React.Component {
                             shoppingList={this.state.shoppingList}
                             userId={this.state.userId}
                             queuedRecipes={this.state.queuedRecipes}
+                            addToQueue={this.addToQueue}
+                            removeFromQueue={this.removeFromQueue}
                         />
                     </Route>
                     <Route path="/">
-                        <Recipes userId={this.state.userId} />
+                        <Recipes
+                            userId={this.state.userId}
+                            addToQueue={this.addToQueue}
+                            removeFromQueue={this.removeFromQueue}
+                        />
                     </Route>
                 </Switch>
                 <Footer />

@@ -25,16 +25,6 @@ class Recipes extends React.Component {
         });
     };
 
-    //Will be passed as prop to Recipe components
-    addToQueue = recipe => {
-        API.getUser(this.props.userId).then(user => {
-            console.log(user);
-            const newRecipes = user.data.queuedRecipes;
-            newRecipes.push(recipe);
-            API.updateUser(this.props.userId, { queuedRecipes: newRecipes });
-        });
-    };
-
     render() {
         return (
             <div>
@@ -77,7 +67,8 @@ class Recipes extends React.Component {
                                 <Recipe
                                     name={recipe.name}
                                     ingredients={recipe.ingredients}
-                                    addToQueue={this.addToQueue}
+                                    addToQueue={this.props.addToQueue}
+                                    removeFromQueue={this.props.removeFromQueue}
                                 />
                             ))}
                         </div>

@@ -11,7 +11,8 @@ class Result extends React.Component {
                         {this.props.ingredients.map(ingredient => {
                             return (
                                 <li key={ingredient.name}>
-                                    {ingredient.name} {ingredient.amount}
+                                    {ingredient.name} {ingredient.amount}{" "}
+                                    {ingredient.unit}
                                 </li>
                             );
                         })}
@@ -25,6 +26,13 @@ class Result extends React.Component {
                         }
                     >
                         Add to queue
+                    </button>
+                    <button
+                        onClick={() =>
+                            this.props.removeFromQueue(this.props.name)
+                        }
+                    >
+                        Remove from queue
                     </button>
                 </article>
             </div>
