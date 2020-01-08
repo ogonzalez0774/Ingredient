@@ -11,8 +11,7 @@ export default {
     return axios.put("/api/users/" + email, userData);
   },
 
-  recipeSearch: function(query) {
-    // return null;
-    // return axios.get("api/recipes/" + query);
+  recipeSearch: function(queryString) {
+    return axios.get("/api/recipes/" + encodeURI(queryString));
   }
 };
