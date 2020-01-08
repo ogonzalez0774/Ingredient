@@ -18,11 +18,11 @@ class Header extends React.Component {
           </h1>
 
           <h2 className="navbar-item subtitle has-text-white">
-            Welcome{this.props.username ? "," : ""} &nbsp;
+            Welcome{this.props.username ? "," : "!"}&nbsp;
             <a href="/pantry" className=" has-text-warning">
-              {this.props.username ? " " + this.props.username : ""}
+              {this.props.username ? this.props.username : ""}
             </a>
-            !
+            {this.props.username ? "!" : ""}
           </h2>
         </div>
         <div className="navbar-end">
