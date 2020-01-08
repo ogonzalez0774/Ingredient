@@ -114,6 +114,7 @@ class Shoplist extends React.Component {
                 type="submit"
                 // name="addSelected"
                 value="Add Selected"
+                readOnly
                 className="button is-info is-light is-outlined is-inverted"
               ></input>
 
@@ -121,6 +122,7 @@ class Shoplist extends React.Component {
                 name="addAll"
                 onClick={this.submitAll}
                 value="Add All"
+                readOnly
                 className="button is-info is-light is-outlined is-inverted"
               ></input>
             </form>

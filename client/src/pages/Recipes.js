@@ -8,11 +8,13 @@ class Recipes extends React.Component {
     search: "",
     result: []
   };
+
   handleFormSubmit = event => {
     this.recipeSearch(this.state.search);
   };
 
   recipeSearch = query => {
+    // API.recipeSearch is not a function atm
     API.recipeSearch(query).then(res => this.setState({ result: res.data }));
   };
 
@@ -45,6 +47,7 @@ class Recipes extends React.Component {
                     <p className="title has-text-white">Search:</p>
                     <div className="field">
                       <div className="control">
+                        {/* i recommend we make this a form to implement enter key input */}
                         <input
                           className="input is-success"
                           type="text"
