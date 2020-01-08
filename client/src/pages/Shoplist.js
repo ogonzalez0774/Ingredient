@@ -33,6 +33,7 @@ class Shoplist extends React.Component {
 
   submitAll = event => {
     event.preventDefault();
+
     API.getUser(this.props.authUser.email).then(user => {
       const checkboxes = document.getElementsByName("addItem");
       const newIngredients = user.data.ingredients;
@@ -54,80 +55,76 @@ class Shoplist extends React.Component {
   render() {
     return (
       // YELLOW BOX
-      <div className="columns">
-        <div className="column tile is-parent is-two-thirds">
-          <article className="tile is-child notification is-bold is-warning">
-            {/* QUEUE */}
-            <div>
-              <p className="subtitle">Queued Recipes:</p>
-              <ul>
-                {this.props.queuedRecipes.map(recipe => {
-                  return (
-                    <li key={recipe.name}>
-                      <button
-                        className="button is-warning is-light is-outlined is-inverted"
-                        onClick={() => {
-                          const mealSchedule = this.props.queuedRecipes;
-                          for (const scheduledRecipe of mealSchedule) {
-                            if (scheduledRecipe.name === recipe.name) {
-                              scheduledRecipe.toggleShow = !scheduledRecipe.toggleShow;
-                            }
+      <div className="tile is-parent is-8">
+        <article className="tile is-child notification is-bold is-warning">
+          {/* QUEUE */}
+          <div>
+            <p className="subtitle">Queued Recipes:</p>
+            <ul>
+              {this.props.queuedRecipes.map(recipe => {
+                return (
+                  <li key={recipe.name}>
+                    <button
+                      className="button is-warning is-light is-outlined is-inverted"
+                      onClick={() => {
+                        const mealSchedule = this.props.queuedRecipes;
+                        for (const scheduledRecipe of mealSchedule) {
+                          if (scheduledRecipe.name === recipe.name) {
+                            scheduledRecipe.toggleShow = !scheduledRecipe.toggleShow;
                           }
-                          this.setState({
-                            schedule: mealSchedule
-                          });
-                        }}
-                      >
-                        {recipe.name}
-                      </button>
-                      {recipe.toggleShow ? (
-                        <Recipe
-                          name={recipe.name}
-                          ingredients={recipe.ingredients}
-                        />
-                      ) : (
-                        <div className="hidden"></div>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </article>
-        </div>
-        {/* SHOPPING LIST */}
-        <div className="column tile is-parent">
-          <article className="tile is-child notification is-bold is-info">
-            <form onSubmit={this.handleSubmit}>
-              <p className="subtitle">Shopping List</p>
+                        }
+                        this.setState({
+                          schedule: mealSchedule
+                        });
+                      }}
+                    >
+                      {recipe.name}
+                    </button>
+                    {recipe.toggleShow ? (
+                      <Recipe
+                        name={recipe.name}
+                        ingredients={recipe.ingredients}
+                        addToQueue={this.props.addToQueue}
+                        removeFromQueue={this.props.removeFromQueue}
+                      />
+                    ) : (
+                      <div className="hidden"></div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
 
-              {Object.keys(this.props.shoppingList).map(title => (
-                <ListItem
-                  name={title}
-                  // unsure how to satisfy unique key condition. this isn't it
-                  key={"list" + title}
-                  value={this.props.shoppingList[title]}
-                ></ListItem>
-              ))}
+          {/* SHOPPING LIST */}
+          <form onSubmit={this.handleSubmit}>
+            <p className="subtitle">Shopping List</p>
 
-              <input
-                type="submit"
-                // name="addSelected"
-                value="Add Selected"
-                readOnly
-                className="button is-info is-light is-outlined is-inverted"
-              ></input>
+            {/* {console.log(this.props.shoppingList)} */}
+            {Object.keys(this.props.shoppingList).map(title => (
+              <ListItem
+                name={title}
+                // unsure how to satisfy unique key condition. this isn't it
+                key={"list" + title}
+                value={this.props.shoppingList[title]}
+              ></ListItem>
+            ))}
 
-              <input
-                name="addAll"
-                onClick={this.submitAll}
-                value="Add All"
-                readOnly
-                className="button is-info is-light is-outlined is-inverted"
-              ></input>
-            </form>
-          </article>
-        </div>
+            <input
+              type="submit"
+              name="addSelected"
+              value="Add Selected"
+              className="button is-warning is-light is-outlined is-inverted"
+            ></input>
+
+            <input
+              type="submit"
+              name="addAll"
+              value="Add All"
+              className="button is-warning is-light is-outlined is-inverted"
+            ></input>
+          </form>
+        </article>
       </div>
     );
   }
