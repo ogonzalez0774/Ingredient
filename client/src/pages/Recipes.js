@@ -8,11 +8,13 @@ class Recipes extends React.Component {
         search: "",
         result: []
     };
+
     handleFormSubmit = event => {
         this.recipeSearch(this.state.search);
     };
 
     recipeSearch = query => {
+        // API.recipeSearch is not a function atm
         API.recipeSearch(query).then(res =>
             this.setState({ result: res.data })
         );
@@ -27,55 +29,48 @@ class Recipes extends React.Component {
 
     render() {
         return (
-            <div>
-                {" "}
-                <div className="tile is-ancestor">
-                    <div className="container">
-                        <div className="box has-background-white">
-                            <div className="tile">
-                                <div className="tile is-parent">
-                                    <article className="tile is-child notification is-bold has-background-grey-light">
-                                        <p className="title has-text-white">
-                                            Search:
-                                        </p>
-                                        <div className="field">
-                                            <div className="control">
-                                                <input
-                                                    className="input is-success"
-                                                    type="text"
-                                                    name="search"
-                                                    placeholder="What're you hungry for?"
-                                                    onChange={
-                                                        this.handleInputChange
-                                                    }
-                                                />
-                                                <button
-                                                    className="button is-success"
-                                                    onClick={
-                                                        this.handleFormSubmit
-                                                    }
-                                                >
-                                                    Search
-                                                </button>
-                                            </div>
+            <div className="tile is-ancestor">
+                <div className="container">
+                    <div className="box has-background-white">
+                        <div className="tile">
+                            <div className="tile is-parent">
+                                <article className="tile is-child notification is-bold has-background-grey-light">
+                                    <p className="title has-text-white">
+                                        Search:
+                                    </p>
+                                    <div className="field">
+                                        <div className="control">
+                                            <input
+                                                className="input is-success"
+                                                type="text"
+                                                name="search"
+                                                placeholder="What're you hungry for?"
+                                                onChange={
+                                                    this.handleInputChange
+                                                }
+                                            />
+                                            <button
+                                                className="button is-success"
+                                                onClick={this.handleFormSubmit}
+                                            >
+                                                Search
+                                            </button>
                                         </div>
-                                    </article>
-                                </div>
+                                    </div>
+                                </article>
                             </div>
-                            {/*<TestRecipe />*/}
-                            {this.state.result.map(recipe => (
-                                <Recipe
-                                    name={recipe.name}
-                                    ingredients={recipe.ingredients}
-                                    addToQueue={this.props.addToQueue}
-                                    removeFromQueue={this.props.removeFromQueue}
-                                />
-                            ))}
                         </div>
+                        {/*<TestRecipe />*/}
+                        {this.state.result.map(recipe => (
+                            <Recipe
+                                name={recipe.name}
+                                ingredients={recipe.ingredients}
+                                addToQueue={this.props.addToQueue}
+                                removeFromQueue={this.props.removeFromQueue}
+                            />
+                        ))}
                     </div>
                 </div>
-                <br />
-                <br />
             </div>
         );
     }
