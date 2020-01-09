@@ -108,7 +108,9 @@ class App extends React.Component {
     API.getUser(this.state.authUser.email).then(user => {
       const newRecipes = user.data.queuedRecipes;
       newRecipes.push(recipe);
-      API.updateUser(this.state.authUser.email, { queuedRecipes: newRecipes });
+      API.updateUser(this.state.authUser.email, {
+        queuedRecipes: newRecipes
+      }).then(() => this.loadPantry(this.state.authUser.email));
     });
   };
 
@@ -120,7 +122,9 @@ class App extends React.Component {
           newRecipes.splice(i, 1);
         }
       }
-      API.updateUser(this.state.authUser.email, { queuedRecipes: newRecipes });
+      API.updateUser(this.state.authUser.email, {
+        queuedRecipes: newRecipes
+      }).then(() => this.loadPantry(this.state.authUser.email));
     });
   };
 
