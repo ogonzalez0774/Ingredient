@@ -16,7 +16,6 @@ class Shoplist extends React.Component {
       const newIngredients = user.data.ingredients;
       checkboxes.forEach(element => {
         if (element.checked) {
-          // for now, will set items to quantity 1
           newIngredients.forEach(ingredient => {
             // this line will need to retrieve a purchasable amount from hard code
             if (ingredient.name === element.value) ingredient.quantity += 1;
@@ -38,7 +37,6 @@ class Shoplist extends React.Component {
       const checkboxes = document.getElementsByName("addItem");
       const newIngredients = user.data.ingredients;
       checkboxes.forEach(element => {
-        // for now, will set items to quantity +1
         newIngredients.forEach(ingredient => {
           // this line will need to retrieve a purchasable amount from hard code
           if (ingredient.name === element.value) ingredient.quantity += 1;
