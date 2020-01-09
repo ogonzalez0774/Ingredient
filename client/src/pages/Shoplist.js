@@ -16,7 +16,6 @@ class Shoplist extends React.Component {
       const newIngredients = user.data.ingredients;
       checkboxes.forEach(element => {
         if (element.checked) {
-          // for now, will set items to quantity 1
           newIngredients.forEach(ingredient => {
             // this line will need to retrieve a purchasable amount from hard code
             if (ingredient.name === element.value) ingredient.quantity += 1;
@@ -33,11 +32,11 @@ class Shoplist extends React.Component {
 
   submitAll = event => {
     event.preventDefault();
+
     API.getUser(this.props.authUser.email).then(user => {
       const checkboxes = document.getElementsByName("addItem");
       const newIngredients = user.data.ingredients;
       checkboxes.forEach(element => {
-        // for now, will set items to quantity +1
         newIngredients.forEach(ingredient => {
           // this line will need to retrieve a purchasable amount from hard code
           if (ingredient.name === element.value) ingredient.quantity += 1;
@@ -84,6 +83,8 @@ class Shoplist extends React.Component {
                         <Recipe
                           name={recipe.name}
                           ingredients={recipe.ingredients}
+                          addToQueue={this.props.addToQueue}
+                          removeFromQueue={this.props.removeFromQueue}
                         />
                       ) : (
                         <div className="hidden"></div>
@@ -112,15 +113,16 @@ class Shoplist extends React.Component {
 
               <input
                 type="submit"
-                // name="addSelected"
+                name="addSelected"
                 value="Add Selected"
+                readOnly
                 className="button is-info is-light is-outlined is-inverted"
               ></input>
 
               <input
                 name="addAll"
-                onClick={this.submitAll}
                 value="Add All"
+                onClick={this.submitAll}
                 className="button is-info is-light is-outlined is-inverted"
               ></input>
             </form>

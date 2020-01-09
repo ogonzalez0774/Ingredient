@@ -9,5 +9,9 @@ export default {
   },
   updateUser: function(email, userData) {
     return axios.put("/api/users/" + email, userData);
+  },
+
+  recipeSearch: function(queryString) {
+    return axios.get("/api/recipes/" + encodeURI(queryString));
   }
 };
