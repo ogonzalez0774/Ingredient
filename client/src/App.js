@@ -178,13 +178,21 @@ class App extends React.Component {
         {this.state.headerState === "login" ? (
           <FirebaseContext.Consumer>
             {firebase => (
-              <Login firebase={firebase} openLogin={this.openLogin} />
+              <Login
+                firebase={firebase}
+                openLogin={this.openLogin}
+                openSignup={this.openSignup}
+              />
             )}
           </FirebaseContext.Consumer>
         ) : this.state.headerState === "signup" ? (
           <FirebaseContext.Consumer>
             {firebase => (
-              <SignUpForm firebase={firebase} openSignup={this.openSignup} />
+              <SignUpForm
+                firebase={firebase}
+                openSignup={this.openSignup}
+                openLogin={this.openLogin}
+              />
             )}
           </FirebaseContext.Consumer>
         ) : null}
