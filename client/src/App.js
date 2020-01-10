@@ -20,7 +20,7 @@ const initialState = {
   headerState: "main",
   authUser: null,
   username: "",
-  ingredients: [],
+  ingredients: {},
   queuedRecipes: [],
   shoppingList: {}
 };
@@ -53,13 +53,9 @@ class App extends React.Component {
 
   pantryCheck(ingredient, groceries) {
     const pantry = this.state.ingredients;
-    let ingredientQuantity = 0;
-    for (const item of pantry) {
-      if (item.name === ingredient) {
-        ingredientQuantity = item.quantity;
-      }
-    }
-    groceries[ingredient] -= ingredientQuantity;
+
+    groceries[ingredient] -= pantry[ingredient] || 0;
+
     if (groceries[ingredient] <= 0) {
       delete groceries[ingredient];
     }
@@ -78,7 +74,8 @@ class App extends React.Component {
         }
 
         // refactored to add quantity
-        groceries[ingredient.name] += ingredient.quantity;
+
+        groceries[ingredient.name] += ingredient.amount;
         // groceries[ingredient.name] = 1;
       });
     }
@@ -95,7 +92,7 @@ class App extends React.Component {
     API.getUser(email).then(user => {
       this.setState({
         username: user.data.username,
-        ingredients: user.data.ingredients,
+        ingredients: user.data.ingredients || {},
         queuedRecipes: user.data.queuedRecipes
       });
 
@@ -103,7 +100,7 @@ class App extends React.Component {
     });
   };
 
-  //Will be passed as prop to Recipes and Shoplist
+  // Will be passed as prop to Recipes and Shoplist
   addToQueue = recipe => {
     API.getUser(this.state.authUser.email).then(user => {
       const newRecipes = user.data.queuedRecipes;
