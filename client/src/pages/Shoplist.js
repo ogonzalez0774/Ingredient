@@ -13,19 +13,19 @@ class Shoplist extends React.Component {
 
     API.getUser(this.props.authUser.email).then(user => {
       const checkboxes = document.getElementsByName("addItem");
-      const newIngredients = user.data.ingredients;
+      const newIngredients = user.data.ingredients || {};
+
       checkboxes.forEach(element => {
         if (element.checked) {
-          newIngredients.forEach(ingredient => {
-            // this line will need to retrieve a purchasable amount from hard code
-            if (ingredient.name === element.value) ingredient.quantity += 1;
-          });
+          if (!newIngredients[element.value]) newIngredients[element.value] = 0;
+          newIngredients[element.value] += 1;
         }
-        API.updateUser(this.props.authUser.email, {
-          ingredients: newIngredients
-        }).then(() => {
-          this.props.loadPantry(this.props.authUser.email);
-        });
+      });
+
+      API.updateUser(this.props.authUser.email, {
+        ingredients: newIngredients
+      }).then(() => {
+        this.props.loadPantry(this.props.authUser.email);
       });
     });
   };
@@ -35,13 +35,13 @@ class Shoplist extends React.Component {
 
     API.getUser(this.props.authUser.email).then(user => {
       const checkboxes = document.getElementsByName("addItem");
-      const newIngredients = user.data.ingredients;
+      const newIngredients = user.data.ingredients || {};
+
       checkboxes.forEach(element => {
-        newIngredients.forEach(ingredient => {
-          // this line will need to retrieve a purchasable amount from hard code
-          if (ingredient.name === element.value) ingredient.quantity += 1;
-        });
+        if (!newIngredients[element.value]) newIngredients[element.value] = 0;
+        newIngredients[element.value] += 1;
       });
+
       API.updateUser(this.props.authUser.email, {
         ingredients: newIngredients
       }).then(() => {
@@ -65,6 +65,7 @@ class Shoplist extends React.Component {
                     <li key={recipe.name}>
                       <button
                         className="button is-warning is-light is-outlined is-inverted"
+                        readOnly
                         onClick={() => {
                           const mealSchedule = this.props.queuedRecipes;
                           for (const scheduledRecipe of mealSchedule) {
@@ -120,6 +121,7 @@ class Shoplist extends React.Component {
               ></input>
 
               <input
+                readOnly
                 name="addAll"
                 value="Add All"
                 readOnly

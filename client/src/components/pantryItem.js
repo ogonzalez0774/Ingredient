@@ -6,7 +6,7 @@ class PantryItem extends React.Component {
       return (
         <button
           className="button is-success is-light is-outlined is-inverted"
-          onClick={this.props.onClick}
+          onDoubleClick={this.props.onDoubleClick}
         >
           {this.props.name}, {this.props.quantity}
         </button>
