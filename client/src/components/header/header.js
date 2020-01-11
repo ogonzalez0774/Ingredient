@@ -24,7 +24,7 @@ class Header extends React.Component {
             </a>
           </h1>
 
-          <h2 className="navbar-item subtitle has-text-white">
+          <h2 className="navbar-item subtitle has-text-white inlineBlock">
             Welcome{this.props.username ? "," : "!"}&nbsp;
             <a href="/pantry" className=" has-text-warning">
               {this.props.username ? this.props.username : ""}
@@ -35,10 +35,7 @@ class Header extends React.Component {
         <div className="navbar-end">
           {this.props.username ? (
             <>
-              {/* <a class="navbar-item" href="https://bulma.io">
-                <img src={Logo} alt="SupperTime Logo" width="100" height="80" />
-              </a> */}
-              <div className="navbar-item">
+              <div className="navbar-item inlineBlock">
                 <a
                   href="/pantry"
                   className="button is-small is-success is-outlined is-inverted"
@@ -53,10 +50,10 @@ class Header extends React.Component {
               </FirebaseContext.Consumer>
             </>
           ) : (
-            <>
+            <div className="navbar-item">
               <OpenSignUp openSignup={this.props.openSignup} />
               <OpenLogin openLogin={this.props.openLogin} />
-            </>
+            </div>
           )}
         </div>
       </nav>
