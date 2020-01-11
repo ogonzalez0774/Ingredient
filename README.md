@@ -32,11 +32,6 @@ SupperTime is an application developed to help with meal prepping. Through Suppe
 - NPM
 - FIREBASE
 
-## Known Issues
-
-- Searching for a recipe with a blank field will crash the app, user will need to reload
-- No user feedback for adding or removing a recipe from search page
-
 ## Authors
 
 - Oscar - https://github.com/ogonzalez0774
