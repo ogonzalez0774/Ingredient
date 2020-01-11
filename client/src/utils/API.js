@@ -13,5 +13,9 @@ export default {
 
   recipeSearch: function(queryString) {
     return axios.get("/api/recipes/" + encodeURI(queryString));
+  },
+
+  createRecipe: function(recipe) {
+    return axios.post("/api/recipes", recipe);
   }
 };
