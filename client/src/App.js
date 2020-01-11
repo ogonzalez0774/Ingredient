@@ -67,6 +67,7 @@ class App extends React.Component {
     // function generates combined ingredients list regardless of pantry quantity
     for (const meal in mealPlan) {
       const recipe = mealPlan[meal];
+
       // forEach and forIn are async, there's probably a cleaner way to do this
       recipe.ingredients.forEach(ingredient => {
         if (!groceries[ingredient.name]) {
