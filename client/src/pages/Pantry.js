@@ -9,12 +9,8 @@ class Pantry extends React.Component {
   togglePantryItem(userEmail, ingredientName) {
     const newIngredients = this.props.ingredients;
 
-    for (const ingredient of newIngredients) {
-      if (ingredient.name === ingredientName) {
-        // ingredient.quantity = (ingredient.quantity + 1) % 2;
-        ingredient.quantity = 0;
-      }
-    }
+    delete newIngredients[ingredientName];
+
     API.updateUser(userEmail, { ingredients: newIngredients });
     this.props.loadPantry(userEmail);
   }
@@ -25,7 +21,19 @@ class Pantry extends React.Component {
         <article className="tile is-child notification is-bold is-success">
           <p className="title">My Pantry:</p>
           <p className="subtitle has-text-centered">
-            {this.props.ingredients.map(ingredient => (
+            {Object.keys(this.props.ingredients).map(key => {
+              return (
+                <PantryItem
+                  name={key}
+                  key={key}
+                  quantity={this.props.ingredients[key]}
+                  onDoubleClick={() => {
+                    this.togglePantryItem(this.props.authUser.email, key);
+                  }}
+                ></PantryItem>
+              );
+            })}
+            {/* {this.props.ingredients.map(ingredient => (
               <PantryItem
                 name={ingredient.name}
                 key={ingredient.name}
@@ -37,7 +45,7 @@ class Pantry extends React.Component {
                   )
                 }
               />
-            ))}
+            ))} */}
           </p>
         </article>
       </div>

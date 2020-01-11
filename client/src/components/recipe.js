@@ -18,6 +18,7 @@ class Result extends React.Component {
                         })}
                     </ul>
                     <button
+                        readOnly
                         onClick={() =>
                             this.props.addToQueue({
                                 name: this.props.name,
@@ -28,6 +29,7 @@ class Result extends React.Component {
                         Add to queue
                     </button>
                     <button
+                        readOnly
                         onClick={() =>
                             this.props.removeFromQueue(this.props.name)
                         }
