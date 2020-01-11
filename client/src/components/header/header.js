@@ -24,7 +24,7 @@ class Header extends React.Component {
             </a>
           </h1>
 
-          <h2 className="navbar-item subtitle has-text-white inlineBlock">
+          <h2 className="navbar-item subtitle has-text-white is-pulled-left">
             Welcome{this.props.username ? "," : "!"}&nbsp;
             <a href="/pantry" className=" has-text-warning">
               {this.props.username ? this.props.username : ""}
@@ -35,7 +35,7 @@ class Header extends React.Component {
         <div className="navbar-end">
           {this.props.username ? (
             <>
-              <div className="navbar-item inlineBlock">
+              <div className="navbar-item is-pulled-left">
                 <a
                   href="/pantry"
                   className="button is-small is-success is-outlined is-inverted"
@@ -43,6 +43,7 @@ class Header extends React.Component {
                   My Pantry
                 </a>
               </div>
+              <div className="navbar-item is-pulled-left"></div>
               <FirebaseContext.Consumer>
                 {firebase => (
                   <SignoutButton firebase={firebase}></SignoutButton>
@@ -50,7 +51,7 @@ class Header extends React.Component {
               </FirebaseContext.Consumer>
             </>
           ) : (
-            <div className="navbar-item">
+            <div className="is-pulled-left">
               <OpenSignUp openSignup={this.props.openSignup} />
               <OpenLogin openLogin={this.props.openLogin} />
             </div>
