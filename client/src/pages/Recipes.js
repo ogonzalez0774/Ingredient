@@ -1,6 +1,5 @@
 import React from "react";
 import API from "../utils/API";
-import TestRecipe from "./TestRecipe";
 import Recipe from "../components/recipe";
 
 class Recipes extends React.Component {
