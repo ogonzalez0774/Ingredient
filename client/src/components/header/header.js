@@ -1,9 +1,9 @@
 import React from "react";
-
+import Logo from "./SupperTimeWeb.jpg";
 import SignoutButton from "../authbuttons/signOut";
 import OpenLogin from "../authbuttons/openLogin";
 import OpenSignUp from "../authbuttons/openSignUp";
-// import "./header.css";
+import "./header.css";
 import { FirebaseContext } from "../firebase/context";
 
 class Header extends React.Component {
@@ -12,8 +12,15 @@ class Header extends React.Component {
       <nav className="navbar is-fixed-top has-background-info">
         <div className="navbar-content">
           <h1 className="navbar-item ">
+            <img
+              src={Logo}
+              alt="SupperTime Logo"
+              className="logo"
+              width="60"
+              height="80"
+            />
             <a href="/" className="title has-text-white">
-              Supper Time
+              <span className="alignVert"> &nbsp;Supper Time</span>
             </a>
           </h1>
 
@@ -28,6 +35,9 @@ class Header extends React.Component {
         <div className="navbar-end">
           {this.props.username ? (
             <>
+              {/* <a class="navbar-item" href="https://bulma.io">
+                <img src={Logo} alt="SupperTime Logo" width="100" height="80" />
+              </a> */}
               <div className="navbar-item">
                 <a
                   href="/pantry"

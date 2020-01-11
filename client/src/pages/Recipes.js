@@ -10,14 +10,11 @@ class Recipes extends React.Component {
     };
 
     handleFormSubmit = event => {
-        this.recipeSearch(this.state.search);
-    };
-
-    recipeSearch = query => {
-        // API.recipeSearch is not a function atm
-        API.recipeSearch(query).then(res =>
-            this.setState({ result: res.data })
-        );
+        event.preventDefault();
+        API.recipeSearch(this.state.search).then(res => {
+            console.log(res);
+            this.setState({ result: res.data });
+        });
     };
 
     handleInputChange = event => {
@@ -34,7 +31,10 @@ class Recipes extends React.Component {
                     <div className="box has-background-white">
                         <div className="tile">
                             <div className="tile is-parent">
-                                <article className="tile is-child notification is-bold has-background-grey-light">
+                                <form
+                                    onSubmit={this.handleFormSubmit}
+                                    className="tile is-child notification is-bold has-background-grey-light"
+                                >
                                     <p className="title has-text-white">
                                         Search:
                                     </p>
@@ -49,17 +49,18 @@ class Recipes extends React.Component {
                                                     this.handleInputChange
                                                 }
                                             />
-                                            <button
+                                            <input
                                                 className="button is-success"
-                                                onClick={this.handleFormSubmit}
-                                            >
-                                                Search
-                                            </button>
+                                                readOnly
+                                                type="submit"
+                                                value="Search"
+                                            ></input>
                                         </div>
                                     </div>
-                                </article>
+                                </form>
                             </div>
                         </div>
+                        {/*<TestRecipe />*/}
                         {this.state.result.map(recipe => (
                             <Recipe
                                 name={recipe.name}
