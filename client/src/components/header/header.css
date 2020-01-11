@@ -1,0 +1,11 @@
+img {
+  height: auto !important;
+  max-height: 5rem !important;
+}
+.logo {
+  position: relative;
+  border-radius: 5%;
+}
+.alignVert {
+  vertical-align: middle;
+}
