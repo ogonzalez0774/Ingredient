@@ -2,10 +2,9 @@ const db = require("../models");
 
 module.exports = {
     search: function(req, res) {
-        //Returns all recipes whose name or ingredients contains the search query.
+        //Returns all recipes whose name or ingredients contains the search query, case insensitively.
         //TODO: Input sanitization.
         const query = decodeURI(req.params.queryString);
-        //const regex = new RegExp(".*" + query + ".*");
         db.Recipe.find({
             $or: [
                 { name: { $regex: query, $options: "i" } },

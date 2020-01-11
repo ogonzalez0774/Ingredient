@@ -60,7 +60,6 @@ class Recipes extends React.Component {
                                 </article>
                             </div>
                         </div>
-                        {/*<TestRecipe />*/}
                         {this.state.result.map(recipe => (
                             <Recipe
                                 name={recipe.name}
