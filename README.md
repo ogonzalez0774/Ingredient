@@ -14,9 +14,9 @@ SupperTime is an application developed to help with meal prepping. Through Suppe
   - `Recipe` (Case sentitive)
   - `User` (Case sentitive)
 - Open console and run following commands.
-  - `Npm Install` -
+  - `npm install` -
     This will install all the requred Npm packages(This will take sometime)
-  - `Npm Start` -
+  - `npm start` -
     This will start the APP (It may take sometime to start up)
 - The app is ready to go!!!
 
