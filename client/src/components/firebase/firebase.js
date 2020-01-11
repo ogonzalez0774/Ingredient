@@ -1,7 +1,9 @@
 import app from "firebase/app";
 import "firebase/auth";
 
-var firebaseConfig = {
+require("dotenv").config();
+
+const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASEKEY,
   authDomain: "ingredientslist-54af2.firebaseapp.com",
   databaseURL: "https://ingredientslist-54af2.firebaseio.com",

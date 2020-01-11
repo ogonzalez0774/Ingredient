@@ -65,7 +65,10 @@ class Login extends React.Component {
 
             {error && <p>{error.message}</p>}
           </form>
-          Don't have an account? <a href="#">Sign up here</a>
+          Don't have an account?{" "}
+          <a onClick={this.props.openSignup} href="#">
+            Sign up here
+          </a>
         </div>
       </div>
     );

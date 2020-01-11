@@ -106,7 +106,10 @@ class SignUpForm extends Component {
 
             {error && <p>{error.message}</p>}
           </form>
-          Already have an account? <a href="#">Log in here</a>
+          Already have an account?{" "}
+          <a onClick={this.props.openLogin} href="#">
+            Log in here
+          </a>
         </div>
       </div>
     );
