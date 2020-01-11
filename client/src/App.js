@@ -81,6 +81,10 @@ class App extends React.Component {
             });
         }
 
+        for (const item in groceries) {
+            this.pantryCheck(item, groceries);
+        }
+
         // will use an ingredient library to convert units to purchasable amount
         this.setState({ shoppingList: groceries });
     }
@@ -121,6 +125,25 @@ class App extends React.Component {
             }).then(() => this.loadPantry(this.state.authUser.email));
         });
     };
+    //Removes a recipe from the user's queue and also uses the correct amount of ingredients from the user's pantry
+    cookRecipe = recipeName => {
+        API.getUser(this.state.authUser.email).then(user => {
+            for (const recipe of user.data.queuedRecipes) {
+                if (recipe.name === recipeName) {
+                    const ingredientsNeeded = recipe.ingredients;
+                    const newIngredients = user.data.ingredients;
+                    for (const ingredient of ingredientsNeeded) {
+                        //It's fine that this amount can be negative. Ingredients with amount <= 0 are automatically deleted
+                        newIngredients[ingredient.name] -= ingredient.amount;
+                    }
+                    this.removeFromQueue(recipeName);
+                    API.updateUser(this.state.authUser.email, {
+                        ingredients: newIngredients
+                    });
+                }
+            }
+        });
+    };
 
     render() {
         return (
@@ -154,6 +177,7 @@ class App extends React.Component {
                                     queuedRecipes={this.state.queuedRecipes}
                                     addToQueue={this.addToQueue}
                                     removeFromQueue={this.removeFromQueue}
+                                    cookRecipe={this.cookRecipe}
                                 />
                             </>
                         ) : (

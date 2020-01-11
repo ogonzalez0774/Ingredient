@@ -4,10 +4,6 @@ import ListItem from "../components/listItem";
 import Recipe from "../components/recipe";
 
 class Shoplist extends React.Component {
-    state = {
-        shoppingList: {}
-    };
-
     handleSubmit = event => {
         event.preventDefault();
 
@@ -19,7 +15,9 @@ class Shoplist extends React.Component {
                 if (element.checked) {
                     if (!newIngredients[element.value])
                         newIngredients[element.value] = 0;
-                    newIngredients[element.value] += 1;
+                    newIngredients[element.value] += this.props.shoppingList[
+                        element.value
+                    ];
                 }
             });
 
@@ -41,7 +39,9 @@ class Shoplist extends React.Component {
             checkboxes.forEach(element => {
                 if (!newIngredients[element.value])
                     newIngredients[element.value] = 0;
-                newIngredients[element.value] += 1;
+                newIngredients[element.value] += this.props.shoppingList[
+                    element.value
+                ];
             });
 
             API.updateUser(this.props.authUser.email, {
@@ -98,6 +98,9 @@ class Shoplist extends React.Component {
                                                     removeFromQueue={
                                                         this.props
                                                             .removeFromQueue
+                                                    }
+                                                    cookRecipe={
+                                                        this.props.cookRecipe
                                                     }
                                                 />
                                             ) : (

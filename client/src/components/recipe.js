@@ -36,6 +36,12 @@ class Result extends React.Component {
                     >
                         Remove from queue
                     </button>
+                    <button
+                        readOnly
+                        onClick={() => this.props.cookRecipe(this.props.name)}
+                    >
+                        I cooked this
+                    </button>
                 </article>
             </div>
         );
