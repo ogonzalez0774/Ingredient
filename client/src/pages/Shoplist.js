@@ -110,7 +110,6 @@ class Shoplist extends React.Component {
                   value={this.props.shoppingList[title]}
                 ></ListItem>
               ))}
-
               <input
                 type="submit"
                 name="addSelected"
@@ -128,7 +127,12 @@ class Shoplist extends React.Component {
                 className="button is-info is-light is-outlined is-inverted"
               ></input>
             </form>
+            <br className="is-hidden-mobile" />
+            <br className="is-hidden-mobile" />
           </article>
+          <br />
+          <br />
+          <br />
         </div>
       </div>
     );
