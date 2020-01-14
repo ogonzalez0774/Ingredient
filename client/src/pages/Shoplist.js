@@ -122,7 +122,6 @@ class Shoplist extends React.Component {
                 readOnly
                 name="addAll"
                 value="Add All"
-                readOnly
                 onClick={this.submitAll}
                 className="button is-info is-light is-outlined is-inverted"
               ></input>
