@@ -15,7 +15,7 @@ import Login from "./components/auth/login";
 import SignUpForm from "./components/auth/signup";
 
 import { FirebaseContext } from "./components/firebase/context";
-import Seeds from "./dbseeds";
+// import Seeds from "./dbseeds";
 
 const initialState = {
   headerState: "main",
@@ -162,9 +162,9 @@ class App extends React.Component {
           )}
         </FirebaseContext.Consumer>
         <Switch>
-          <Route path="/seeds">
-            <Seeds></Seeds>
-          </Route>
+          {/* <Route path="/seeds">
+            <Seeds />
+          </Route> */}
           <Route path="/pantry">
             {this.state.authUser ? (
               <>
@@ -194,6 +194,7 @@ class App extends React.Component {
               addToQueue={this.addToQueue}
               removeFromQueue={this.removeFromQueue}
               authUser={this.state.authUser}
+              cookRecipe={this.cookRecipe}
             />
           </Route>
         </Switch>
