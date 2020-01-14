@@ -128,5 +128,128 @@
     },
     "baking powder": {
         "unit": "teaspoon"
+    },
+    "beef": {
+        "unit": "pounds"
+    },
+    "cream of mushroom soup": {
+        "unit": "can"
+    },
+    "water": {
+        "unit": "cup"
+    },
+    "chives": {
+        "unit": "tablespoon"
+    },
+    "Worcestershire sauce": {
+        "unit": "tablespoon"
+    },
+    "beef bouillon": {
+        "unit": "cube"
+    },
+    "red wine": {
+        "unit": "cup"
+    },
+    "cornstarch": {
+        "unit": "tablespoon"
+    },
+    "sour cream": {
+        "unit": "cup"
+    },
+    "sliced fresh mushrooms": {
+        "unit": "(8 oz) package"
+    },
+    "cream cheese": {
+        "unit": "ounces"
+    },
+    "parsley": {
+        "unit": "cup"
+    },
+    "green onion": {
+        "unit": "tablespoons"
+    },
+    "crabmeat": {
+        "unit": "cup"
+    },
+    "bread crumbs": {
+        "unit": "cup"
+    },
+    "Monterey Jack cheese": {
+        "unit": "cup"
+    },
+    "lemon juice": {
+        "unit": "teaspoon"
+    },
+    "white wine": {
+        "unit": "cup"
+    },
+    "ground beef": {
+        "unit": "pound"
+    },
+    "sausage": {
+        "unit": "pound"
+    },
+    "celery": {
+        "unit": "stalks"
+    },
+    "cabbage": {
+        "unit": "head"
+    },
+    "stewed tomatoes": {
+        "unit": "(14.5 oz) can"
+    },
+    "lettuce": {
+        "unit": "leaves"
+    },
+    "cooking oil": {
+        "unit": "tablespoon"
+    },
+    "hoisin sauce": {
+        "unit": "cup"
+    },
+    "soy sauce": {
+        "unit": "tablespoon"
+    },
+    "rice wine vinegar": {
+        "unit": "tablespoon"
+    },
+    "ginger": {
+        "unit": "teaspoon"
+    },
+    "water chestnut": {
+        "unit": "(8 oz) can"
+    },
+    "sesame oil": {
+        "unit": "teaspoon"
+    },
+    "cauliflower": {
+        "unit": "head"
+    },
+    "Cheddar cheese": {
+        "unit": "cup"
+    },
+    "corn flakes": {
+        "unit": "cup"
+    },
+    "green bell pepper": {
+        "unit": "cup"
+    },
+    "red bell pepper": {
+        "unit": "cup"
+    },
+    "Parmesan cheese": {
+        "unit": "cup"
+    },
+    "brown sugar": {
+        "unit": "cup"
+    },
+    "baking soda": {
+        "unit": "teaspoon"
+    },
+    "semisweet chocolate chips": {
+        "unit": "cups"
+    },
+    "walnuts": {
+        "unit": "cup"
     }
 }
