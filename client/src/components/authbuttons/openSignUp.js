@@ -3,7 +3,7 @@ import React from "react";
 class OpenSignup extends React.Component {
   render() {
     return (
-      <div className="navbar-item is-pulled-left">
+      <div className="navbar-item is-pulled-left noHorizontalPad">
         <button
           className="button is-small is-info is-outlined is-inverted"
           onClick={this.props.openSignup}

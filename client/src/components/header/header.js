@@ -35,7 +35,7 @@ class Header extends React.Component {
         <div className="navbar-end">
           {this.props.username ? (
             <>
-              <div className="navbar-item is-pulled-left">
+              <div className="navbar-item is-pulled-left noHorizontalPad">
                 <a
                   href="/pantry"
                   className="button is-small is-success is-outlined is-inverted"
@@ -43,7 +43,7 @@ class Header extends React.Component {
                   My Pantry
                 </a>
               </div>
-              <div className="navbar-item is-pulled-left"></div>
+
               <FirebaseContext.Consumer>
                 {firebase => (
                   <SignoutButton firebase={firebase}></SignoutButton>
@@ -51,10 +51,10 @@ class Header extends React.Component {
               </FirebaseContext.Consumer>
             </>
           ) : (
-            <div className="is-pulled-left">
+            <>
               <OpenSignUp openSignup={this.props.openSignup} />
               <OpenLogin openLogin={this.props.openLogin} />
-            </div>
+            </>
           )}
         </div>
       </nav>
