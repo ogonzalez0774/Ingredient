@@ -17,6 +17,7 @@ class Result extends React.Component {
             })}
           </ul>
           <button
+            className="button is-success"
             readOnly
             onClick={() =>
               this.props.addToQueue({
@@ -28,12 +29,14 @@ class Result extends React.Component {
             Add to queue
           </button>
           <button
+            className="button is-success"
             readOnly
             onClick={() => this.props.removeFromQueue(this.props.name)}
           >
             Remove from queue
           </button>
           <button
+            className="button is-success"
             readOnly
             onClick={() => this.props.cookRecipe(this.props.name)}
           >
