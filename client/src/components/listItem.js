@@ -1,4 +1,5 @@
 import React from "react";
+const units = require("../units.json");
 
 class ListItem extends React.Component {
     render() {
@@ -9,7 +10,11 @@ class ListItem extends React.Component {
                     name="addItem"
                     value={this.props.name}
                 ></input>
-                {this.props.name} {this.props.value}
+                {this.props.name}{" "}
+                {units[this.props.name].amount === "To Taste"
+                    ? "to taste"
+                    : this.props.value}{" "}
+                {units[this.props.name].unit}
             </label>
         );
     }
