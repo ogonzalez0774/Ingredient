@@ -17,7 +17,7 @@ class Result extends React.Component {
             })}
           </ul>
           <button
-            className="button is-success is-outlined"
+            className="button is-success is-inverted is-outlined"
             readOnly
             onClick={() =>
               this.props.addToQueue({
@@ -36,7 +36,7 @@ class Result extends React.Component {
             Remove from queue
           </button>
           <button
-            className="button is-success is-outlined"
+            className="button is-success is-inverted is-outlined"
             readOnly
             onClick={() => this.props.cookRecipe(this.props.name)}
           >
